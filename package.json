@@ -1,4 +1,7 @@
 {
   "name":     "Package Manager",
-  "version":  "0.1.0"
+  "version":  "0.1.0",
+  "repository": {
+    "url": "https://github.com/distantnative/package-manager"
+  }
 }
