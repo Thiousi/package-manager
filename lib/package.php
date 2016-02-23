@@ -10,10 +10,11 @@ class Package {
 
   public $name = null;
 
-  public function __construct($dir, $source, $manager) {
+  public function __construct($dir, $source, $core) {
     $this->pid     = $source . '/' . f::name($dir);
     $this->dir     = $dir;
-    $this->cache   = $manager->cache;
+    $this->core    = $core;
+    $this->cache   = $this->core->cache;
 
 
     if($this->json = $this->json()) {

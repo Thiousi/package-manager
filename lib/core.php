@@ -28,7 +28,6 @@ class PackagesManager {
     $this->cache  = cache::setup('file', array(
       'root' => $this->root . DS . 'cache')
     );
-
   }
 
   public function html() {

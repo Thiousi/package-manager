@@ -69,6 +69,7 @@ class Update {
     $url = $this->repository['url'];
     $url = str_replace('//github.com/', '//raw.githubusercontent.com/', $url);
     $url = rtrim($url, '/') . '/master/package.json';
+
     return str::parse(f::read($url));
   }
 
