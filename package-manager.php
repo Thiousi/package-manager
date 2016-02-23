@@ -2,12 +2,12 @@
 
 require('lib/core.php');
 
-$pm = new \Kirby\Plugins\PackageManager(panel());
 
 return array(
-  'title'   => $pm->title(),
-  'options' => $pm->options(),
-  'html'    => function() use($pm) {
+  'title'   => 'Packages Manager',
+  'options' => array(),
+  'html'    => function() {
+    $pm = new \Kirby\Plugins\PackageManager(panel());
     return $pm->html();
   }
 );

@@ -11,21 +11,12 @@ use Tpl;
 
 class PackageManager {
 
-  public $title   = 'Package Manager';
   public $options = array();
 
   public function __construct($panel) {
     $this->panel = $panel;
     $this->kirby = $this->panel->kirby();
     $this->root  = __DIR__ . DS . '..';
-  }
-
-  public function title() {
-    return $this->title;
-  }
-
-  public function options() {
-    return $this->options;
   }
 
   public function html() {
