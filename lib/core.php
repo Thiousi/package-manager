@@ -7,11 +7,16 @@ require('package.php');
 use C;
 use Dir;
 use F;
+use Str;
 use Tpl;
 
 class PackageManager {
 
-  public $options = array();
+  public $types = array(
+    'Plugins',
+    'Fields',
+    'Widgets'
+  );
 
   public function __construct($panel) {
     $this->panel = $panel;
@@ -21,13 +26,17 @@ class PackageManager {
 
   public function html() {
     return tpl::load($this->root . DS . 'templates' . DS . 'widget.php', array(
-      'packages' => array(
-        'Plugins' => $this->packages('plugins'),
-        'Fields'  => $this->packages('fields'),
-        'Widgets' => $this->packages('widgets')
-      ),
-      'assets'  => $this->assets(),
+      'packages' => $this->types(),
+      'assets'   => $this->assets(),
     ));
+  }
+
+  protected function types() {
+    $packages = array();
+    foreach($this->types as $type) {
+      $packages[$type] = $this->packages(str::lower($type));
+    }
+    return $packages;
   }
 
   protected function packages($source) {
