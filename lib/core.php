@@ -19,9 +19,12 @@ class PackageManager {
   );
 
   public function __construct($panel) {
-    $this->panel = $panel;
-    $this->kirby = $this->panel->kirby();
-    $this->root  = __DIR__ . DS . '..';
+    $this->panel  = $panel;
+    $this->kirby  = $this->panel->kirby();
+    $this->root   = __DIR__ . DS . '..';
+    $this->cache  = $this->root . DS . 'cache';
+
+    dir::make($this->cache);
   }
 
   public function html() {
@@ -46,7 +49,7 @@ class PackageManager {
     foreach(dir::read($root) as $package) {
       if(f::extension($package) != 'php' and f::extension($package) != '') continue;
 
-      array_push($packages, new PackageManager\Package($root . DS . $package));
+      array_push($packages, new PackageManager\Package($root . DS . $package, $this));
     }
 
     return $packages;

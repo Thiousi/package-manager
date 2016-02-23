@@ -7,5 +7,13 @@ To test, just put everything into `site/widgets/package-manager/`.
 ## Options
 
 ```php
-c::get('packages.check.updates', true)
+c::set('packages.check.updates', true)
+```
+
+```php
+c::set('packages.cache', true)
+```
+
+```php
+c::set('packages.cache.age', 60 * 60 * 24)
 ```
