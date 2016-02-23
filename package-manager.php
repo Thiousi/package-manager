@@ -7,7 +7,7 @@ return array(
   'title'   => 'Packages Manager',
   'options' => array(),
   'html'    => function() {
-    $pm = new \Kirby\Plugins\PackageManager(panel());
+    $pm = new \Kirby\Plugins\PackagesManager(panel());
     return $pm->html();
   }
 );

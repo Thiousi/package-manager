@@ -16,7 +16,7 @@
           <?= $package->name() ?>
 
           <?php if($version = $package->version()) : ?>
-            <span class="package-version package-version--<?= $package->getUpdateLabel() ?>"><?= $version ?></span>
+            <span class="package-version package-version--<?= $package->update()->getClass() ?>"><?= $version ?></span>
           <?php endif ?>
 
           <?php if($repo = $package->repository()) : ?>
