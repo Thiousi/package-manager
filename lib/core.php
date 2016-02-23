@@ -10,7 +10,7 @@ use Tpl;
 
 class PackageManager {
 
-  public $title   = 'Bundle Manager';
+  public $title   = 'Package Manager';
   public $options = array();
 
   public function __construct($panel) {

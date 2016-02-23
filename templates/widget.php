@@ -3,7 +3,13 @@
   <h1><?= $type ?></h1>
   <ul class="nav nav-list sidebar-list">
     <?php foreach($items as $package) : ?>
-      <li><?= $package->name() ?></li>
+      <li>
+        <?= $package->name() ?>
+
+        <?php if($version = $package->version()) : ?>
+          <em><?= $version ?></em>
+        <?php endif ?>
+      </li>
     <?php endforeach ?>
   </ul>
 <?php endforeach ?>

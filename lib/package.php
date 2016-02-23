@@ -29,7 +29,13 @@ class Package {
   }
 
   public function __call($method, $arguments) {
-    return isset($this->{$method}) ? $this->{$method} : null;
+    if(isset($this->{$method})) {
+      return $this->{$method};
+    } else if(isset($this->json[$method])) {
+      return $this->json[$method];
+    } else {
+      return null;
+    }
   }
 
 }
