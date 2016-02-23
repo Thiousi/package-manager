@@ -4,8 +4,8 @@
 
 
 <?php foreach($packages as $type => $items) : ?>
-  <h1><?= $type ?></h1>
-  <ul class="">
+  <h1 class="packages-heading"><?= $type ?></h1>
+  <ul class="nav packages-list">
     <?php foreach($items as $package) : ?>
       <li>
         <?php if($repo = $package->repository()) : ?>
@@ -15,7 +15,7 @@
         <?= $package->name() ?>
 
         <?php if($version = $package->version()) : ?>
-          <em class="package-version update-<?= $package->updateStatus() ?>"><?= $version ?></em>
+          <span class="package-version package-version--<?= $package->updateStatus() ?>"><?= $version ?></span>
         <?php endif ?>
 
         <?php if($repo = $package->repository()) : ?>

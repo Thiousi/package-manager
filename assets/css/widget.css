@@ -1,12 +1,21 @@
 
-.update-available {
+.packages-heading:not(:first-of-type) {
+  margin-top: 1em;
+}
+
+.package-version {
+  padding-left: 5px;
+  font-size: .8em;
+}
+
+.package-version--available {
   color: #b3000a;
 }
 
-.update-none {
+.package-version--none {
   color: #8dae28;
 }
 
-.update-unknown {
+.package-version--unknown {
   color: #aaa;
 }

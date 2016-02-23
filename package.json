@@ -1,5 +1,6 @@
 {
   "name":     "Package Manager",
+  "author":   "Nico Hoffmann",
   "version":  "0.1.0",
   "repository": {
     "url": "https://github.com/distantnative/package-manager"
