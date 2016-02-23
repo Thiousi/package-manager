@@ -1,21 +1,18 @@
 
+.packages-heading {
+  text-transform: uppercase;
+}
+
 .packages-heading:not(:first-of-type) {
-  margin-top: 1em;
+  margin-top: 1.5em;
 }
 
 .package-version {
+  display:      inline-block;
   padding-left: 5px;
-  font-size: .8em;
+  font-size:    .8em;
 }
 
-.package-version--available {
-  color: #b3000a;
-}
-
-.package-version--none {
-  color: #8dae28;
-}
-
-.package-version--unknown {
-  color: #aaa;
-}
+.package-version--unknown   { color: #aaa;    }
+.package-version--available { color: #b3000a; }
+.package-version--none      { color: #8dae28; }

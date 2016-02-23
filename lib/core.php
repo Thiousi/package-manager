@@ -18,6 +18,7 @@ class PackagesManager {
   public $types = array(
     'Plugins',
     'Fields',
+    'Tags',
     'Widgets'
   );
 
