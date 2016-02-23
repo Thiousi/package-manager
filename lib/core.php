@@ -26,9 +26,22 @@ class PackagesManager {
     $this->panel  = $panel;
     $this->kirby  = $this->panel->kirby();
     $this->root   = __DIR__ . DS . '..';
-    $this->cache  = cache::setup('file', array(
-      'root' => $this->root . DS . 'cache')
-    );
+
+    // check if cache can be written, otherwise the widget will fail here,
+    // no other widget would be loaded.
+    if(c::get('packages.cache', true)) {
+        if(dir::writable($this->root . DS . 'cache')) {
+            $this->cache  = cache::setup('file', array(
+              'root' => $this->root . DS . 'cache')
+            );
+        } else {
+            // Disable caching if dir is not writable, to make sure it
+            // will continue to work
+            c::set('packages.cache', false);
+            echo 'Error: Could not create Cache-Directory: ' . $this->root . DS . 'cache';
+            return false;
+        }
+    }
   }
 
   public function html() {

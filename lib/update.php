@@ -58,7 +58,10 @@ class Update {
       $value = $json ? $json : array();
       $alive = c::get('packages.cache.age', 60 * 24) + rand(0, 15);
 
-      $this->cache->set($key, $value, $alive);
+      if(c::get('packages.cache', true)) {
+          $this->cache->set($key, $value, $alive);
+      }
+
       return isset($value['version']) ? $value['version'] : null;
     } else {
       return null;
