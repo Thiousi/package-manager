@@ -34,15 +34,16 @@ class Package {
   // ====================================
 
   public function isUpdateAvailable() {
-    return version_compare($this->getRemoteVersion(), $this->version(), '>');
+    return ($remote = $this->getRemoteVersion()) ? version_compare($remote, $this->version(), '>') : null;
   }
 
 
-  public function updateStatus() {
+  public function getUpdateLabel() {
     if(!c::get('packages.check.updates', true)) return 'unknown';
 
     $update = $this->isUpdateAvailable();
     if(is_null($update)) return 'unknown';
+
 
     return $update ? 'available' : 'none';
   }
