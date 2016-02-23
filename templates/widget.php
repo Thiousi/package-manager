@@ -8,7 +8,7 @@
     <h1 class="packages-heading"><?= $type ?></h1>
     <ul class="nav packages-list">
       <?php foreach($items as $package) : ?>
-        <li title="<?= $package->name() ?> - by <?= $package->author() ?>">
+        <li title="<?= $package->name() ?><?= ($author = $package->author()) ? ' - by ' . $author : null ?>">
           <?php if($repo = $package->repository()) : ?>
             <a href="<?= $repo['url'] ?>">
           <?php endif ?>

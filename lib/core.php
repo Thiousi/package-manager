@@ -15,7 +15,7 @@ use Tpl;
 
 class PackagesManager {
 
-  public $types = array(
+  public $sources = array(
     'Plugins',
     'Fields',
     'Tags',
@@ -33,17 +33,17 @@ class PackagesManager {
 
   public function html() {
     return tpl::load($this->root . DS . 'templates' . DS . 'widget.php', array(
-      'packages' => $this->types(),
+      'packages' => $this->sources(),
       'assets'   => $this->assets(),
     ));
   }
 
-  protected function types() {
-    $packages = array();
-    foreach($this->types as $type) {
-      $packages[$type] = $this->packages(str::lower($type));
+  protected function sources() {
+    $sources = array();
+    foreach($this->sources as $source) {
+      $sources[$source] = $this->packages(str::lower($source));
     }
-    return $packages;
+    return $sources;
   }
 
   protected function packages($source) {
