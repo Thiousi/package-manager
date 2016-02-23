@@ -15,7 +15,7 @@
         <?= $package->name() ?>
 
         <?php if($version = $package->version()) : ?>
-          <em class="package-version update-<?= $package->isUpdateAvailable() ? 'available' : 'none' ?>"><?= $version ?></em>
+          <em class="package-version update-<?= $package->updateStatus() ?>"><?= $version ?></em>
         <?php endif ?>
 
         <?php if($repo = $package->repository()) : ?>

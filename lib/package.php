@@ -2,6 +2,7 @@
 
 namespace Kirby\Plugins\PackageManager;
 
+use C;
 use F;
 use Str;
 
@@ -19,6 +20,49 @@ class Package {
     }
   }
 
+  protected function readJSON() {
+    $file = $this->dir . DS . 'package.json';
+
+    if(!f::exists($file)) return false;
+
+    return str::parse(f::read($file));
+  }
+
+
+  // ====================================
+  //  Version checks
+  // ====================================
+
+  public function isUpdateAvailable() {
+    return version_compare($this->getRemoteVersion(), $this->version(), '>');
+  }
+
+
+  public function updateStatus() {
+    if(!c::get('packages.check.updates', true)) return 'unknown';
+
+    $update = $this->isUpdateAvailable();
+    if(is_null($update)) return 'unknown';
+
+    return $update ? 'available' : 'none';
+  }
+
+  protected function getRemoteVersion() {
+    if($repo = $this->repository()) {
+      if(str::contains($repo['url'], '//github.com/')) {
+        $url  = str_replace('//github.com/', '//raw.githubusercontent.com/', $repo['url']);
+        $url  = rtrim($url, '/') . '/master/package.json';
+        $json = str::parse(f::read($url));
+
+        return $json['version'];
+      }
+    }
+
+    return null;
+  }
+
+
+
   public function __call($method, $arguments) {
     if(isset($this->{$method})) {
       return $this->{$method};
@@ -27,27 +71,6 @@ class Package {
     } else {
       return null;
     }
-  }
-
-  public function isUpdateAvailable() {
-    if($repo = $this->repository()) {
-      $url  = rtrim(str_replace('//github.com/', '//raw.githubusercontent.com/', $repo['url']), '/') . '/master/package.json';
-      $json = str::parse(f::read($url));
-
-      if(version_compare($json['version'], $this->version(), '>')) {
-        return true;
-      }
-    }
-
-    return false;
-  }
-
-  protected function readJSON() {
-    $file = $this->dir . DS . 'package.json';
-
-    if(!f::exists($file)) return false;
-
-    return str::parse(f::read($file));
   }
 
 }
