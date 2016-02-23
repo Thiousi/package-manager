@@ -55,7 +55,7 @@ class Package {
         $url  = rtrim($url, '/') . '/master/package.json';
         $json = str::parse(f::read($url));
 
-        return $json['version'];
+        return isset($json['version']) ? $json['version'] : null;
       }
     }
 
